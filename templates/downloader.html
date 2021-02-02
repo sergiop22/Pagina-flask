@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container-fluid mx-auto col-6" style="padding-top: 30px;">
+    <div class="container-fluid mx-auto col-6">
+        <div class="card mb-3" style="width: 18rem; text-align: center; border-color: black;">
+            <img src="../static/youtube3.gif" class="card-img-top" alt="youtube gif">
+            <div class="card-body">
+            <h5 class="card-title">Add URL Youtube video</h5>
+            <form method="POST">
+                <input type="text" name="url" id="url">
+                <button class="btn btn-dark" style="margin-top:10px;" type="submit">Download</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages%}
+            <p style="text-align: center; color: black;">{{msg}}</p>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
+{% endblock %}
