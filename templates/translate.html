@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container-fluid mx-auto col-8">
+    <div class="card-group" style="width: 50rem;">
+        <div class="card mb-3" style="text-align: center; border-color: black;">
+            <img src="../static/translate.gif" class="card-img-top" alt="translate gif">
+            <div class="card-body">
+            </div>
+        </div>
+        <div class="card mb-3" style="text-align: center; border-color: black;">
+            <h5 class="card-title">Auto detect</h5>
+            <form method="POST">
+                <select class="form-select-sm" name="drop" style="overflow-x: hidden;">
+                    {% for lan in session.pop('choose_language', []) %}
+                        <option value="{{lan}}">{{lan}}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" style="margin-top: 5px;" name="trans" id="trans">
+                <hr style="color: transparent;">
+                <button class="btn btn-dark" type="submit">Translate</button>
+            </form>
+            <div class="card-body">
+                {% if output %}
+                    <textarea name="text" id="text" cols="30" rows="8">{{output}}</textarea>
+                {% else %}
+                    <textarea name="text" id="text" cols="30" rows="8"></textarea>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages%}
+            <p style="text-align: center; color: black;">{{msg}}</p>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
+{% endblock %}
