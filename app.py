@@ -29,9 +29,9 @@ def downloader():
 
     return render_template("downloader.html")
 
-@app.route('/encrypt')
-def encrypt():
-    return render_template("encrypt.html")
+@app.route('/synth')
+def synth():
+    return render_template("synth.html")
 
 @app.route('/translate', methods=['GET', 'POST'])
 def translate():

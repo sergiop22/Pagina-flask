@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div class="container-fluid mx-auto col-6" style="padding-top: 30px;">
+    <div class="container-fluid mx-auto col-6">
+        <div class="card mb-3" style="width: 18rem; text-align: center; border-color: black;">
+            <img src="../static/synth.gif" class="card-img-top" alt="synth gif">
+            <div class="card-body">
+                <h3>SYNTH</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mx-auto col-6"  style="padding-left: 33px;">
+    <div id="keyboard"></div>
+</div>
+
+<script src="../static/js/qwerty.min.js"></script>
+<script src="../static/js/synth.js"></script>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages%}
+            <p style="text-align: center; color: black;">{{msg}}</p>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
+{% endblock %}
