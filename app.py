@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, flash, session
+import smtplib
+from forms.contact_form import ContactForm
+import pandas as pd
 from pytube import YouTube
 import time
 from googletrans import Translator
@@ -59,9 +62,34 @@ def translate():
 
     return render_template("translate.html") 
 
+
 @app.route('/contact')
 def contact():
-    return render_template("contact.html")
+    return render_template("contact_me.html")
+
+@app.route('/contact_web', methods=['GET', 'POST'])
+def contact_web():
+    form = ContactForm()
+    if request.method == "POST":
+        name =  request.form["name"]
+        email = request.form["email"]
+        subject = request.form["subject"]
+        message = request.form["message"]
+
+        destino = 'sergiop9730@gmail.com'
+        msg = """From: %s 
+                    To: %s 
+                    MIME-Version: 1.0 
+                    Content-type: text/html 
+                    Subject: %s 
+                    %s 
+                    """ % (email, destino, subject, message)
+
+        smtp = smtplib.SMTP('smtp.gmail.com:587')
+        smtp.sendmail(email, destino, msg)
+        flash("The data are saved!")
+        
+    return render_template("contact.html", form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)

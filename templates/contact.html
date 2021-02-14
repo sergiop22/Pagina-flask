@@ -1,5 +1,42 @@
 {% extends 'layout.html' %}
 {% block content %}
+<link rel="stylesheet" href="../static/contact.css">
 
+<div class="container-fluid mx-auto col-6">
+	<div class="contact">
+	    <h3>Contact</h3>
+	    <form action="{{ url_for('contact') }}" method=post>
+	        <div>
+	            <p>
+	                {{ form.name.label }} <br>
+	                {{ form.name(placeholder='Your name') }}
+	            </p>
+	            <p>
+	                {{ form.email.label }} <br>
+	                {{ form.email(placeholder='Your e-mail ...') }}
+	            </p>
+	            <p>
+	                {{ form.subject.label }}<br>
+	                {{form.subject(placeholder='Your subject ...')}}
+	            </p>
+	            <p>
+	                {{ form.message.label }}<br>
+	                {{ form.message(placeholder='write your request ...') }}
+	            </p>
+	            <p>
+	                {{ form.submit }}
+	            </p>
+	        </div>
+	    </form>
+	</div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages%}
+            <p style="text-align: center; color: black;">{{msg}}</p>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
 
 {% endblock %}

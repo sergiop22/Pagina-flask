@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<link rel="stylesheet" href="../static/contact.css">
+
+<div class="container-fluid mx-auto col-6">
+	<div class="contact">
+	    <h3>Contact</h3>
+	    
+	</div>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for msg in messages%}
+            <p style="text-align: center; color: black;">{{msg}}</p>
+        {% endfor%}
+    {% endif %}
+{% endwith %}
+
+{% endblock %}
